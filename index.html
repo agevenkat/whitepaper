@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The New GTM Playbook 2026 - 90-Day Framework</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* ── ROOT & GLOBALS ── */
+  :root {
+    --ink: #0d0d0e;
+    --paper: #f5f0e8;
+    --accent: #c8401a;
+    --gold: #b8955a;
+    --muted: #7a7060;
+    --rule: #d4ccc0;
+    --highlight: #fff9ee;
+    --phase1: #1a3a5c;
+    --phase2: #c8401a;
+    --phase3: #2d6b45;
+    --bp-tablet: 768px;
+    --bp-desktop: 1024px;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 60px 80px;
+    position: relative;
+    border-bottom: 3px solid var(--ink);
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top:0; right:0;
+    width:42%;
+    height:100%;
+    background: var(--ink);
+    z-index:0;
+  }
+
+  .cover-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    position:relative;
+    z-index:1;
+  }
+
+  .cover-brand,
+  .cover-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-meta { text-align: right; }
+
+  .cover-body {
+    display:flex;
+    align-items:flex-end;
+    position:relative;
+    z-index:1;
+    padding:60px 0 40px;
+  }
+
+  .cover-title-block {
+    max-width:58%;
+  }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom:24px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
+  .cover-eyebrow::before {
+    content:'';
+    display:inline-block;
+    width:28px;
+    height:1px;
+    background:var(--accent);
+  }
+
+  h1.cover-h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px,6vw,88px);
+    font-weight:900;
+    line-height:1;
+    letter-spacing:-.02em;
+    color: var(--ink);
+    margin-bottom:32px;
+  }
+
+  h1.cover-h1 em {
+    font-style:italic;
+    color: var(--accent);
+  }
+
+  .cover-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size:15px;
+    font-weight:300;
+    color:var(--muted);
+    max-width:420px;
+    line-height:1.7;
+    margin-bottom:48px;
+  }
+
+  .cover-cta-line {
+    display:flex;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap; /* pills wrap on narrow screens */
+  }
+
+  .pill {
+    display:inline-block;
+    padding:8px 20px;
+    border:1.5px solid var(--ink);
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+
+  .pill.filled {
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  .cover-numbers {
+    position:absolute;
+    right:80px;
+    bottom:80px;
+    z-index:2;
+    text-align:right;
+  }
+
+  .cover-stat { margin-bottom:32px; }
+
+  .cover-stat-num {
+    font-family:'Playfair Display', serif;
+    font-size:54px;
+    font-weight:900;
+    color:var(--paper);
+    line-height:1;
+    display:block;
+  }
+
+  .cover-stat-label {
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:rgba(245,240,232,.5);
+    display:block;
+    margin-top:4px;
+  }
+
+  .cover-footer {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    position:relative;
+    z-index:1;
+    border-top:1px solid var(--rule);
+    padding-top:24px;
+  }
+
+  .cover-footer-text {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.12em;
+    color:var(--muted);
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width:900px; margin:0 auto; padding:80px 60px; }
+  .page-wide { max-width:100%; padding:80px 80px; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section-label::before {
+    content:'';
+    display:inline-block;
+    width:20px;
+    height:1px;
+    background:var(--accent);
+  }
+
+  h2.section-h2 {
+    font-family:'Playfair Display', serif;
+    font-size: clamp(32px,4vw,52px);
+    font-weight:700;
+    line-height:1.1;
+    letter-spacing:-.02em;
+    color:var(--ink);
+    margin-bottom:24px;
+  }
+  h2.section-h2 em { font-style:italic; color:var(--accent); }
+
+  h3 {
+    font-family:'Playfair Display', serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:12px;
+    margin-top:36px;
+  }
+
+  p { margin-bottom:20px; color:#2a2520; line-height:1.8; }
+
+  /* ── DIVIDERS ── */
+  .rule { border:none; border-top:1px solid var(--rule); margin:60px 0; }
+  .rule-heavy { border:none; border-top:3px solid var(--ink); margin:0; }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left:4px solid var(--accent);
+    padding:24px 36px;
+    margin:48px 0;
+    background:var(--highlight);
+  }
+  .pull-quote p {
+    font-family:'Playfair Display', serif;
+    font-size:22px;
+    font-style:italic;
+    line-height:1.5;
+    color:var(--ink);
+    margin:0;
+  }
+  .pull-quote cite {
+    display:block;
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:16px;
+    font-style:normal;
+  }
+
+  /* ── STAT CALLOUTS ── */
+  .stats-row {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:0;
+    border:2px solid var(--ink);
+    margin:48px 0;
+  }
+  .stat-cell {
+    padding:36px 28px;
+    border-right:1px solid var(--ink);
+    text-align:center;
+  }
+  .stat-cell:last-child { border-right:none; }
+  .stat-n {
+    font-family:'Playfair Display', serif;
+    font-size:52px;
+    font-weight:900;
+    line-height:1;
+    color:var(--accent);
+    display:block;
+  }
+  .stat-l {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:8px;
+    display:block;
+    line-height:1.5;
+  }
+
+  /* ── CONTEXT BANNER ── */
+  .context-band {
+    background:var(--ink);
+    color:var(--paper);
+    padding:60px 80px;
+  }
+  .context-band h2 {
+    font-family:'Playfair Display', serif;
+    font-size:38px;
+    font-weight:700;
+    color:var(--paper);
+    margin-bottom:20px;
+    line-height:1.2;
+  }
+  .context-band p {
+    color:rgba(245,240,232,.75);
+    max-width:680px;
+    font-size:16px;
+  }
+  .context-band .section-label { color:var(--gold); }
+  .context-band .section-label::before { background:var(--gold); }
+
+  /* ── FORCE LIST ── */
+  .forces-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border:1.5px solid var(--rule);
+    margin:40px 0;
+  }
+  .force-item {
+    padding:32px 28px;
+    border-right:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .force-item:nth-child(even) { border-right:none; }
+  .force-item:nth-last-child(-n+2) { border-bottom:none; }
+  .force-num {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.2em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .force-item h4 {
+    font-family:'Playfair Display', serif;
+    font-size:17px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .force-item p {
+    font-size:13.5px;
+    color:var(--muted);
+    line-height:1.65;
+    margin:0;
+  }
+
+  /* ── PHASE SYSTEM ── */
+  .phases-container { margin:48px 0; }
+  .phase-block { margin-bottom:2px; border:2px solid var(--ink); }
+  .phase-header {
+    display:grid;
+    grid-template-columns:160px 1fr auto;
+    align-items:stretch;
+    cursor:pointer;
+    background:var(--highlight);
+    transition:background .2s;
+  }
+  .phase-header:hover { background:#f0e8d8; }
+  .phase-badge {
+    padding:28px 24px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    border-right:2px solid var(--ink);
+  }
+  .phase-badge.p1 { background:var(--phase1); }
+  .phase-badge.p2 { background:var(--phase2); }
+  .phase-badge.p3 { background:var(--phase3); }
+  .phase-badge span {
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:rgba(255,255,255,.65);
+    display:block;
+  }
+  .phase-badge strong {
+    font-family:'Playfair Display', serif;
+    font-size:26px;
+    font-weight:900;
+    color:#fff;
+    display:block;
+    line-height:1.1;
+    margin-top:4px;
+  }
+  .phase-title-block {
+    padding:28px 32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .phase-days {
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .phase-name {
+    font-family:'Playfair Display', serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.2;
+  }
+  .phase-toggle {
+    padding:28px 32px;
+    display:flex;
+    align-items:center;
+    font-family:'DM Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--muted);
+    gap:8px;
+  }
+  .phase-body {
+    padding:36px 40px;
+    border-top:1px solid var(--rule);
+    background:#fff;
+  }
+  .phase-goal {
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--muted);
+    margin-bottom:32px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--rule);
+  }
+  .tracks-grid {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:24px;
+    margin-bottom:32px;
+  }
+  .track {
+    padding:24px 20px;
+    border:1px solid var(--rule);
+    background:var(--highlight);
+  }
+  .track-label {
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:10px;
+  }
+  .track h5 {
+    font-family:'Playfair Display', serif;
+    font-size:14px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .track ul { list-style:none; padding:0; }
+  .track ul li {
+    font-size:12.5px;
+    color:var(--muted);
+    line-height:1.6;
+    padding:3px 0;
+    padding-left:14px;
+    position:relative;
+  }
+  .track ul li::before {
+    content:'→';
+    position:absolute;
+    left:0;
+    color:var(--accent);
+    font-size:10px;
+    top:4px;
+  }
+  .kpis-row {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    padding-top:20px;
+    border-top:1px dashed var(--rule);
+  }
+  .kpi-tag {
+    padding:6px 14px;
+    border:1px solid var(--rule);
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.1em;
+    color:var(--muted);
+    background:#fff;
+  }
+
+  /* ── PRINCIPLES ── */
+  .principles-stack { margin:48px 0; }
+  .principle {
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:0;
+    border-bottom:1px solid var(--rule);
+    padding:32px 0;
+    align-items:start;
+  }
+  .principle:first-child { border-top:1px solid var(--rule); }
+  .principle-num {
+    font-family:'Playfair Display', serif;
+    font-size:36px;
+    font-weight:900;
+    color:var(--rule);
+    line-height:1;
+    padding-top:4px;
+  }
+  .principle-body h4 {
+    font-family:'Playfair Display', serif;
+    font-size:18px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .principle-body p {
+    font-size:14px;
+    color:var(--muted);
+    line-height:1.7;
+    margin:0;
+  }
+
+  /* ── MATRIX ── */
+  .table-wrapper { overflow-x:auto; }
+  .matrix-table {
+    width:100%;
+    border-collapse:collapse;
+    margin:40px 0;
+    font-size:13px;
+    min-width:600px; /* forces scroll on phones */
+  }
+  .matrix-table thead tr { background:var(--ink); color:var(--paper); }
+  .matrix-table thead th {
+    padding:14px 20px;
+    text-align:left;
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    font-weight:400;
+  }
+  .matrix-table tbody tr { border-bottom:1px solid var(--rule); }
+  .matrix-table tbody tr:nth-child(even) { background:var(--highlight); }
+  .matrix-table tbody td {
+    padding:14px 20px;
+    vertical-align:top;
+    color:#2a2520;
+    line-height:1.6;
+  }
+  .matrix-table tbody td:first-child {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.08em;
+    color:var(--accent);
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    border:2px solid var(--ink);
+    padding:32px 36px;
+    margin:40px 0;
+    position:relative;
+  }
+  .callout-tag {
+    position:absolute;
+    top:-1px;
+    left:24px;
+    transform:translateY(-50%);
+    background:var(--paper);
+    padding:0 10px;
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .callout h4 {
+    font-family:'Playfair Display', serif;
+    font-size:16px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:12px;
+  }
+  .callout p {
+    font-size:13.5px;
+    color:var(--muted);
+    margin:0;
+    line-height:1.7;
+  }
+
+  /* ── TIMELINE VISUAL ── */
+  .timeline-visual {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:0;
+    margin:48px 0;
+    border:2px solid var(--ink);
+  }
+  .tl-phase {
+    padding:36px 28px;
+    border-right:1px solid var(--ink);
+  }
+  .tl-phase:last-child { border-right:none; }
+  .tl-color-bar {
+    height:4px;
+    margin-bottom:20px;
+  }
+  .tl-phase.p1 .tl-color-bar { background:var(--phase1); }
+  .tl-phase.p2 .tl-color-bar { background:var(--phase2); }
+  .tl-phase.p3 .tl-color-bar { background:var(--phase3); }
+  .tl-label {
+    font-family:'DM Mono', monospace;
+    font-size:9px;
+    letter-spacing:.25em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:8px;
+  }
+  .tl-title {
+    font-family:'Playfair Display', serif;
+    font-size:18px;
+    font-weight:700;
+    color:var(--ink);
+    margin-bottom:16px;
+  }
+  .tl-items { list-style:none; }
+  .tl-items li {
+    font-size:12.5px;
+    color:var(--muted);
+    padding:4px 0;
+    padding-left:16px;
+    position:relative;
+    line-height:1.55;
+  }
+  .tl-items li::before {
+    content:' - ';
+    position:absolute;
+    left:0;
+    color:var(--rule);
+  }
+
+  /* ── CONCLUSION ── */
+  .conclusion-band {
+    background:var(--ink);
+    color:var(--paper);
+    padding:80px;
+  }
+  .conclusion-band .section-label { color:var(--gold); }
+  .conclusion-band .section-label::before { background:var(--gold); }
+  .conclusion-band h2 {
+    font-family:'Playfair Display', serif;
+    font-size:44px;
+    font-weight:900;
+    color:var(--paper);
+    line-height:1.1;
+    margin-bottom:28px;
+    letter-spacing:-.02em;
+  }
+  .conclusion-band h2 em { font-style:italic; color:var(--gold); }
+  .conclusion-band p {
+    color:rgba(245,240,232,.75);
+    max-width:620px;
+    font-size:16px;
+    line-height:1.8;
+  }
+  .manifesto-list {
+    list-style:none;
+    margin-top:40px;
+  }
+  .manifesto-list li {
+    font-family:'Playfair Display', serif;
+    font-size:18px;
+    font-style:italic;
+    color:rgba(245,240,232,.85);
+    padding:14px 0;
+    border-bottom:1px solid rgba(245,240,232,.1);
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .manifesto-list li::before {
+    content:'✦';
+    color:var(--gold);
+    font-style:normal;
+    font-size:14px;
+    flex-shrink:0;
+    margin-top:4px;
+  }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    padding:40px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:3px solid var(--ink);
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .doc-footer-brand {
+    font-family:'Playfair Display', serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .doc-footer-meta {
+    font-family:'DM Mono', monospace;
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--muted);
+    text-align:right;
+  }
+
+  /* ── RESPONSIVE ADJUSTMENTS ── */
+  @media (max-width: 767px) {
+    /* ---- COVER ---- */
+    .cover { min-height:auto; padding:30px 20px; }
+    .cover::before { display:none; }
+    .cover-header { flex-direction:column; align-items:flex-start; gap:12px; }
+    .cover-body   { flex-direction:column; align-items:flex-start; padding:30px 0 20px; gap:24px; }
+    .cover-title-block { max-width:100%; }
+    .cover-eyebrow { font-size:9px; margin-bottom:12px; }
+    .cover-h1 { font-size:clamp(32px,10vw,56px); margin-bottom:16px; }
+    .cover-cta-line { flex-wrap:wrap; gap:8px; }
+    .cover-numbers { position:static; margin-top:20px; text-align:left; }
+    .cover-stat { margin-bottom:20px; }
+    .cover-stat-num { font-size:38px; }
+    .cover-stat-label { font-size:8px; line-height:1.3; }
+    .cover-footer { flex-direction:column; align-items:flex-start; gap:8px; padding-top:16px; }
+    .cover-footer-text { font-size:9px; }
+
+    /* ---- GRID‑LIKE SECTIONS ---- */
+    .forces-grid,
+    .stats-row,
+    .tracks-grid,
+    .timeline-visual,
+    .phase-header,
+    .principle {
+      grid-template-columns:1fr !important;
+    }
+
+    .force-item,
+    .stat-cell,
+    .track,
+    .tl-phase,
+    .phase-badge,
+    .phase-title-block,
+    .phase-toggle {
+      border-right:none !important;
+    }
+
+    .phase-header { gap:12px; }
+
+    .principle { grid-template-columns:1fr; gap:12px; }
+    .principle-num { text-align:left; padding:0; }
+
+    /* ---- TABLE ---- */
+    .table-wrapper { overflow-x:auto; }
+
+    /* ---- FOOTER ---- */
+    .doc-footer { flex-direction:column; align-items:flex-start; }
+    .doc-footer-meta { text-align:left; }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .cover { padding:45px 40px; }
+    .cover-body { padding:45px 0 30px; }
+    .cover-numbers { right:40px; bottom:40px; }
+  }
+
+  /* ── PRINT (unchanged) ── */
+  @media print {
+    .cover::before,
+    .phase-badge,
+    .stats-row { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-header">
+    <div class="cover-brand">Whitepaper · GTM Strategy</div>
+    <div class="cover-meta">March 2026<br>GTM Strategy Lab</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-title-block">
+      <div class="cover-eyebrow">The New GTM Playbook</div>
+      <h1 class="cover-h1">Go-to-Market<br>in the <em>Age of<br>Invisible</em> Search</h1>
+      <p class="cover-subtitle">
+        A 90‑day execution framework for marketers navigating AI‑mediated discovery, the collapse of click‑through, and the new architecture of buyer trust.
+      </p>
+      <div class="cover-cta-line">
+        <span class="pill filled">90‑Day Framework</span>
+        <span class="pill">Q1–Q2 2026</span>
+        <span class="pill">SEO / AEO / GEO</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-numbers">
+    <div class="cover-stat">
+      <span class="cover-stat-num">800M</span>
+      <span class="cover-stat-label">Weekly ChatGPT users<br>bypassing your website</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">64%</span>
+      <span class="cover-stat-label">Organic CTR decline<br>in AI‑overview queries</span>
+    </div>
+    <div class="cover-stat">
+      <span class="cover-stat-num">90</span>
+      <span class="cover-stat-label">Days to reposition<br>before the gap widens</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div class="cover-footer-text">Confidential · For GTM Leaders, CMOs &amp; Founders</div>
+    <div class="cover-footer-text">https://clea.design · All rights reserved 2026</div>
+  </div>
+</section>
+
+<hr class="rule-heavy">
+
+<!-- ══════════════════════════════════════════
+     EXECUTIVE SUMMARY
+══════════════════════════════════════════ -->
+<section class="page">
+  <div class="section-label">01 · Executive Summary</div>
+  <h2 class="section-h2">The Rules<br>Changed<em>. Again.</em></h2>
+
+  <p>Every five years or so, the marketing industry undergoes a structural reset that punishes those who optimized for the previous era. The last reset – the rise of inbound, content, and organic search – rewarded those who published well and ranked high. That playbook is now being demolished by a force none of us fully anticipated: the rise of AI as the primary search intermediary.</p>
+
+  <p>In 2026, generative engines sit between your brand and your buyers. Nearly 800 million people per week use ChatGPT alone to answer questions that previously drove traffic to your website. Google's AI Overviews, Perplexity, Gemini, and a wave of agentic browsers are rapidly converting your content from <em>destinations</em> into <em>sources</em>. The click doesn't come. But the citation might.</p>
+
+  <div class="pull-quote">
+    <p>"The shift is not about losing clicks. It is about losing the ability to control the narrative at the moment your buyer is forming intent."</p>
+    <cite>- Synthesized from ZoomInfo GTM Predictions, 2026</cite>
+  </div>
+
+  <p>This whitepaper delivers a clear, actionable 90‑day GTM framework structured around the three forces reshaping go‑to‑market strategy: <strong>AI‑mediated discovery</strong>, <strong>the trust crisis in outbound</strong>, and <strong>the emergence of signal‑based selling</strong>. Whether you are a B2B SaaS brand, a growth‑stage startup, or an agency building client strategy, this is your re‑entry roadmap.</p>
+
+  <div class="stats-row">
+    <div class="stat-cell">
+      <span class="stat-n">15–64%</span>
+      <span class="stat-l">Organic traffic decline across categories<br>where AI Overviews appear</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-n">75%+</span>
+      <span class="stat-l">Marketing leaders who expect cookieless<br>shift to disrupt operations (Deloitte)</span>
+    </div>
+    <div class="stat-cell">
+      <span class="stat-n">80%</span>
+      <span class="stat-l">Enterprise marketers projected to use<br>generative AI daily by 2027 (Gartner)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MARKET CONTEXT
+══════════════════════════════════════════ -->
+<div class="context-band">
+  <div class="section-label">02 · Market Context</div>
+  <h2>Five Forces<br>Reshaping GTM in 2026</h2>
+  <p>Before any execution plan, a clear‑eyed diagnosis of the landscape. These five structural shifts are not hypothetical – they are already producing measurable consequences in pipeline, discovery, and brand trust.</p>
+</div>
+
+<section class="page">
+  <div class="forces-grid">
+    <div class="force-item">
+      <div class="force-num">Force 01</div>
+      <h4>AI Becomes the Buyer's First Advisor</h4>
+      <p>ChatGPT Shopping, Perplexity, Gemini, and soon agent‑native browsers like Comet (Perplexity) and Disco (Google) are replacing search results pages. Buyers ask for recommendations; AI selects a vendor before your URL is ever visited. Discovery now happens in conversation, not on a SERP.</p>
+    </div>
+
+    <div class="force-item">
+      <div class="force-num">Force 02</div>
+      <h4>Zero‑Click Spreads Across Every Platform</h4>
+      <p>Zero‑click is no longer a Google‑only phenomenon. It now spans ChatGPT, Bing, Meta AI, Perplexity, and TikTok. Your content becomes a source, not a destination. Success metrics must shift from sessions to citations, from traffic to brand recognition inside AI answers.</p>
+    </div>
+
+    <div class="force-item">
+      <div class="force-num">Force 03</div>
+      <h4>The Trust Crisis in Outbound Deepens</h4>
+      <p>AI‑generated "AI slop" has flooded every inbox and feed. Buyers have developed both technological filters (Apple Intelligence, Gmail AI summaries) and psychological ones. The outbound that now works is hyper‑personalised, trigger‑based, and deeply human. Volume is dead; signal is king.</p>
+    </div>
+
+    <div class="force-item">
+      <div class="force-num">Force 04</div>
+      <h4>Cookieless Reality Has Arrived</h4>
+      <p>Third‑party cookies have effectively disappeared across major platforms. First‑party data is no longer a nice‑to‑have; it is your entire measurement and targeting infrastructure. Brands that built consent‑first data flows now have a compounding structural advantage.</p>
+    </div>
+
+    <div class="force-item">
+      <div class="force-num">Force 05</div>
+      <h4>Retention Becomes the GTM Strategy</h4>
+      <p>With CAC at all‑time highs and growth capital constrained, Net Revenue Retention (NRR) has become the primary indicator of product‑market fit. Sophisticated GTM teams in 2026 are designing around expansion, referral, and customer‑led growth – not just net new acquisition.</p>
+    </div>
+
+    <div class="force-item">
+      <div class="force-num">Implication</div>
+      <h4>The Era of Experimentation Is Over</h4>
+      <p>As multiple sources confirm: the era of endless A/B tests and hedged experiments is ending. This is the era of execution – committing to fewer, higher‑conviction bets, aligning every motion to pipeline, and treating AI not as a tool to test but as infrastructure to integrate. Strategy and differentiation matter again.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STRATEGIC FOUNDATION
+══════════════════════════════════════════ -->
+<hr class="rule-heavy">
+<section class="page">
+  <div class="section-label">03 · Strategic Foundation</div>
+  <h2 class="section-h2">Six Principles<br>for <em>Modern</em> GTM</h2>
+
+  <p>Before the 90‑day plan, internalize these six operating principles. They are the philosophical substrate of everything that follows. Tactics built on a wrong foundation simply fail faster.</p>
+
+  <div class="principles-stack">
+    <div class="principle">
+      <div class="principle-num">01</div>
+      <div class="principle-body">
+        <h4>Rank‑to‑Recognize Shift: From SERP to Citation</h4>
+        <p>The goal is no longer to rank third on Google. The goal is to be the source that AI cites when a buyer asks a question in your category. This requires structured, credible, authoritative content built for extraction – not for reading. Ask: does your content make you easy for AI to understand, summarize, and recommend?</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-num">02</div>
+      <div class="principle-body">
+        <h4>Authority Is the New Keyword Density</h4>
+        <p>Generative engines filter for trust, credibility, and consistency before they surface your brand. Original research, structured data, consistent entity presence, peer citations, and schema markup are the new ranking signals. The shift is from content volume to content authority.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-num">03</div>
+      <div class="principle-body">
+        <h4>Signal‑Led Outreach Replaces Volume Sequencing</h4>
+        <p>Monitor buying triggers – funding rounds, leadership changes, tech‑stack shifts, regulatory events – and craft outreach that references them directly. One perfectly‑timed, deeply relevant message outperforms ten templated touches at every stage of the funnel.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-num">04</div>
+      <div class="principle-body">
+        <h4>First‑Party Data Is Competitive Infrastructure</h4>
+        <p>Your owned data – CRM records, behavioral data, consent‑gathered email lists, customer interviews – is now your targeting, measurement, and personalization layer. Build walls around it. Every content asset, event, or community touchpoint should feed your first‑party data system.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-num">05</div>
+      <div class="principle-body">
+        <h4>AI Amplifies Intent; Humans Create It</h4>
+        <p>AI excels at interpreting signals, scaling variants, and compressing execution timelines. It cannot generate the genuine insight, bold positioning, or authentic narrative that earns buyer trust. Use AI to accelerate and systemize – not to replace strategic thinking or human creativity.</p>
+      </div>
+    </div>
+
+    <div class="principle">
+      <div class="principle-num">06</div>
+      <div class="principle-body">
+        <h4>Experience Is the New Engagement Metric</h4>
+        <p>Top GTM teams are moving beyond MQLs and form fills to measure behavioral and emotional indicators of intent. The real signal is not that someone attended your webinar – it is why they stayed, what they clicked after, and what that behavior reveals about purchase readiness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     90‑DAY OVERVIEW
+══════════════════════════════════════════ -->
+<hr class="rule-heavy">
+<section class="page">
+  <div class="section-label">04 · The Plan</div>
+  <h2 class="section-h2">The 90‑Day<br><em>GTM</em> Framework</h2>
+
+  <p>The framework is organized across three phases, each building on the last. Phase I establishes the strategic and technical foundation. Phase II activates demand generation and pipeline. Phase III compounds and scales. Each phase runs 30 days and includes three tracks: Content & Visibility, Outbound & Pipeline, and Data & Infrastructure.</p>
+
+  <div class="timeline-visual">
+    <div class="tl-phase p1">
+      <div class="tl-color-bar"></div>
+      <div class="tl-label">Days 1–30</div>
+      <div class="tl-title">Foundation &<br>Positioning</div>
+      <ul class="tl-items">
+        <li>ICP sharpening</li>
+        <li>GEO/AEO audit</li>
+        <li>Entity & schema setup</li>
+        <li>First‑party data audit</li>
+        <li>Messaging framework</li>
+        <li>Signal stack config</li>
+      </ul>
+    </div>
+
+    <div class="tl-phase p2">
+      <div class="tl-color-bar"></div>
+      <div class="tl-label">Days 31–60</div>
+      <div class="tl-title">Activation &<br>Demand</div>
+      <ul class="tl-items">
+        <li>Authority content launch</li>
+        <li>Signal‑based outbound</li>
+        <li>Paid demand capture</li>
+        <li>Community &amp; events</li>
+        <li>AEO answer assets</li>
+        <li>Pipeline tracking live</li>
+      </ul>
+    </div>
+
+    <div class="tl-phase p3">
+      <div class="tl-color-bar"></div>
+      <div class="tl-label">Days 61–90</div>
+      <div class="tl-title">Scale &<br>Compound</div>
+      <ul class="tl-items">
+        <li>Retention loop activation</li>
+        <li>AI workflow integration</li>
+        <li>Attribution refinement</li>
+        <li>Expansion playbook</li>
+        <li>Partner co‑marketing</li>
+        <li>90‑day retrospective</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PHASE 1
+══════════════════════════════════════════ -->
+<section class="page">
+  <div class="phases-container">
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-badge p1">
+          <span>Phase</span>
+          <strong>01</strong>
+        </div>
+        <div class="phase-title-block">
+          <div class="phase-days">Days 1 – 30</div>
+          <div class="phase-name">Foundation &amp; Positioning</div>
+        </div>
+        <div class="phase-toggle">Build the base →</div>
+      </div>
+
+      <div class="phase-body">
+        <div class="phase-goal">
+          "You cannot outrun a broken ICP. Before activating any channel, define precisely who you serve, why they are in‑market now, and whether AI can recognize you as authoritative in your category."
+        </div>
+
+        <div class="tracks-grid">
+          <div class="track">
+            <div class="track-label">Track A · Content &amp; Visibility</div>
+            <h5>GEO &amp; AEO Foundation</h5>
+            <ul>
+              <li>Full technical SEO + schema audit</li>
+              <li>Entity optimization across brand properties</li>
+              <li>Google Business Profile, Bing, Apple Maps cleanup</li>
+              <li>Structured FAQ and HowTo schema deployment</li>
+              <li>Identify top 20 "answer" queries in your category</li>
+              <li>Content gap analysis vs. AI‑cited competitors</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track B · Outbound &amp; Pipeline</div>
+            <h5>ICP Sharpening &amp; Signal Stack</h5>
+            <ul>
+              <li>Refine ICP: firmographic + technographic + behavioral</li>
+              <li>Map buying triggers per segment (funding, headcount, tech)</li>
+              <li>Configure signal monitoring (Apollo, Bombora, LinkedIn)</li>
+              <li>Build trigger‑response message library (not templates)</li>
+              <li>Audit and clean CRM for first‑party integrity</li>
+              <li>Define pipeline stages tied to intent signals</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track C · Data &amp; Infrastructure</div>
+            <h5>First‑Party Data Architecture</h5>
+            <ul>
+              <li>Audit existing consent capture flows</li>
+              <li>Implement cookie consent manager + privacy policy update</li>
+              <li>Identify zero‑party data collection touchpoints</li>
+              <li>Set up unified analytics (GA4 + CRM attribution)</li>
+              <li>Define 5 core GTM KPIs tied to revenue, not vanity</li>
+              <li>Map full funnel from awareness signal → closed won</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kpis-row">
+          <span class="kpi-tag">KPI: ICP document finalized</span>
+          <span class="kpi-tag">KPI: Schema deployed on 100% of priority pages</span>
+          <span class="kpi-tag">KPI: Signal stack live &amp; triggering</span>
+          <span class="kpi-tag">KPI: Attribution model documented</span>
+          <span class="kpi-tag">KPI: 20 AEO target queries mapped</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-tag">Phase 1 · Critical Insight</div>
+    <h4>The AI Discoverability Audit Is Not Optional</h4>
+    <p>Before activating any content or outbound, test how your brand appears in ChatGPT, Perplexity, and Google AI Overviews for your core category queries. If your brand is invisible, absent, or mis‑represented, all downstream demand generation is building on a broken foundation. Identify the gaps. Fix the entity signals first. Then create content.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PHASE 2
+════════════════════════════════════════── -->
+<section class="page">
+  <div class="phases-container">
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-badge p2">
+          <span>Phase</span>
+          <strong>02</strong>
+        </div>
+        <div class="phase-title-block">
+          <div class="phase-days">Days 31 – 60</div>
+          <div class="phase-name">Activation &amp; Demand Generation</div>
+        </div>
+        <div class="phase-toggle">Go to market →</div>
+      </div>
+
+      <div class="phase-body">
+        <div class="phase-goal">
+          "With foundation set, Phase II activates pipeline. The sequence is deliberate: authority content first, demand capture second, outbound third – each reinforcing the others rather than running in isolation."
+        </div>
+
+        <div class="tracks-grid">
+          <div class="track">
+            <div class="track-label">Track A · Content &amp; Visibility</div>
+            <h5>Authority Content Engine</h5>
+            <ul>
+              <li>Publish one cornerstone original research piece</li>
+              <li>Build 5 AEO‑optimized answer pages per query cluster</li>
+              <li>Launch a thought‑leadership sequence (founder‑led)</li>
+              <li>Pitch for AI‑cited sources (Wikipedia, Wikidata, G2, Capterra)</li>
+              <li>Structured data on all blog, product, and comparison pages</li>
+              <li>Video + transcript content for multimodal AI consumption</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track B · Outbound &amp; Pipeline</div>
+            <h5>Signal‑Triggered Outreach</h5>
+            <ul>
+              <li>Activate trigger‑based sequences (funding, job posts, tool installs)</li>
+              <li>Run 3 hyper‑personalized micro‑campaigns (50 accounts each)</li>
+              <li>Host one high‑signal experience (intimate roundtable or live audit)</li>
+              <li>LinkedIn social selling: engagement before DM</li>
+              <li>Partner co‑sell introductions with 2–3 complementary tools</li>
+              <li>Track emotional + behavioral engagement, not just form fills</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track C · Data &amp; Infrastructure</div>
+            <h5>Paid Demand &amp; Attribution</h5>
+            <ul>
+              <li>Launch retargeting against first‑party segments only</li>
+              <li>Run bottom‑of‑funnel paid (branded, competitor, solution queries)</li>
+              <li>A/B test landing pages against AI‑visible answer pages</li>
+              <li>Implement pipeline revenue attribution (not MQL counting)</li>
+              <li>Set up weekly GTM metrics review cadence</li>
+              <li>Deploy customer behavioral event tracking in product/site</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kpis-row">
+          <span class="kpi-tag">KPI: 1 original research piece published &amp; distributed</span>
+          <span class="kpi-tag">KPI: Brand cited in ≥2 AI engine responses</span>
+          <span class="kpi-tag">KPI: 150+ ICP accounts touched via signal‑led outbound</span>
+          <span class="kpi-tag">KPI: 10+ pipeline opportunities created</span>
+          <span class="kpi-tag">KPI: Revenue attribution model live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-tag">Phase 2 · Critical Insight</div>
+    <h4>The "Experience Over Engagement" Imperative</h4>
+    <p>Buyers in 2026 are overwhelmed by AI‑generated content and automated touchpoints. The brands winning pipeline are those who create high‑signal, intentional experiences – a well‑run roundtable, a live audit, a curated peer community – where the emotional and behavioral signals produced are far more predictive than any form‑fill or webinar attendance metric. Design for the signal, not the volume.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PHASE 3
+════════════════════════════════════════── -->
+<section class="page">
+  <div class="phases-container">
+    <div class="phase-block">
+      <div class="phase-header">
+        <div class="phase-badge p3">
+          <span>Phase</span>
+          <strong>03</strong>
+        </div>
+        <div class="phase-title-block">
+          <div class="phase-days">Days 61 – 90</div>
+          <div class="phase-name">Scale, Compound &amp; Retain</div>
+        </div>
+        <div class="phase-toggle">Compound growth →</div>
+      </div>
+
+      <div class="phase-body">
+        <div class="phase-goal">
+          "Acquisition without retention is a leaking bucket. Phase III locks in the gains from Phases I and II, activates expansion revenue, and builds the compounding loops that make the next 90 days materially easier than the first."
+        </div>
+
+        <div class="tracks-grid">
+          <div class="track">
+            <div class="track-label">Track A · Content &amp; Visibility</div>
+            <h5>Compound &amp; Syndicate</h5>
+            <ul>
+              <li>Repurpose cornerstone research into 10+ derivative assets</li>
+              <li>Submit original research for industry media syndication</li>
+              <li>Build a living resource hub AI engines can crawl and cite</li>
+              <li>Launch a quarterly GEO performance report (internal)</li>
+              <li>Develop creator/influencer co‑content for reach amplification</li>
+              <li>Optimize existing pages based on AI citation tracking</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track B · Outbound &amp; Pipeline</div>
+            <h5>Retention &amp; Expansion Plays</h5>
+            <ul>
+              <li>Build formal customer‑success → expansion playbook</li>
+              <li>Activate customer referral and case‑study program</li>
+              <li>Create expansion triggers (usage signals → upsell outreach)</li>
+              <li>Run partner co‑marketing campaign with top 2 integrations</li>
+              <li>Conduct 10 customer interviews for positioning refinement</li>
+              <li>Design community‑led growth loop (Slack/Discord/LinkedIn)</li>
+            </ul>
+          </div>
+
+          <div class="track">
+            <div class="track-label">Track C · Data &amp; Infrastructure</div>
+            <h5>AI Workflow Integration</h5>
+            <ul>
+              <li>Automate signal‑to‑sequence pipeline (Apollo + HubSpot/CRM)</li>
+              <li>Deploy AI for content variant generation + editorial QA</li>
+              <li>Build reporting dashboard: NRR, pipeline, GEO citations, CAC</li>
+              <li>Run full 90‑day GTM retrospective with stakeholders</li>
+              <li>Document what worked, what didn’t, and next 90‑day bets</li>
+              <li>Plan next phase based on data, not assumptions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="kpis-row">
+          <span class="kpi-tag">KPI: NRR tracked and improving</span>
+          <span class="kpi-tag">KPI: 3+ customer case studies published</span>
+          <span class="kpi-tag">KPI: AI workflow automating ≥2 GTM motions</span>
+          <span class="kpi-tag">KPI: ≥5 AI engine citations in target category</span>
+          <span class="kpi-tag">KPI: 90‑day GTM playbook documented for repeatability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     STRATEGIC MATRIX
+══════════════════════════════════════════ -->
+<hr class="rule-heavy">
+<section class="page">
+  <div class="section-label">05 · Strategic Matrix</div>
+  <h2 class="section-h2">Old Playbook<br><em>vs.</em> New Playbook</h2>
+
+  <p>The most important clarity a GTM leader can have in 2026 is knowing which beliefs and behaviors to stop rewarding. Below is a direct comparison of the old mental models vs. the new operating system.</p>
+
+  <div class="table-wrapper">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Old Playbook (2020–2024)</th>
+          <th>New Playbook (2025–2026)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Search Strategy</td>
+          <td>Rank on page one for target keywords</td>
+          <td>Be the source that AI cites when a buyer asks a question in your category</td>
+        </tr>
+        <tr>
+          <td>Content Goal</td>
+          <td>Drive traffic; maximize sessions and time‑on‑site</td>
+          <td>Build authority; maximize citations, extractions, and structured recall</td>
+        </tr>
+        <tr>
+          <td>Outbound</td>
+          <td>High‑volume sequences; 10+ touches per prospect</td>
+          <td>Signal‑triggered, deeply personalized; 1 perfectly‑timed message beats 10</td>
+        </tr>
+        <tr>
+          <td>Data Strategy</td>
+          <td>Third‑party cookies + purchased contact lists</td>
+          <td>First‑party consent data; zero‑party behavioral signals</td>
+        </tr>
+        <tr>
+          <td>Success Metric</td>
+          <td>MQLs, form fills, traffic, ranking positions</td>
+          <td>Pipeline revenue, NRR, AI citations, behavioral intent signals</td>
+        </tr>
+        <tr>
+          <td>AI Usage</td>
+          <td>Speed up content production</td>
+          <td>Redesign workflows; AI as coordination layer, not execution layer</td>
+        </tr>
+        <tr>
+          <td>Buyer Journey</td>
+          <td>Linear funnel: awareness → consideration → decision</td>
+          <td>Non‑linear, AI‑mediated: invisible discovery → intent signal → conversation</td>
+        </tr>
+        <tr>
+          <td>Brand Positioning</td>
+          <td>Differentiated messaging and feature comparison</td>
+          <td>Recognized authority; the brand AI trusts and buyers find already‑decided</td>
+        </tr>
+        <tr>
+          <td>Team Structure</td>
+          <td>Channel owners in silos: SEO, Paid, Content, Sales Dev</td>
+          <td>Modular, AI‑augmented pods aligned to pipeline outcomes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CONCLUSION
+════════════════════════════════════════── -->
+<div class="conclusion-band">
+  <div class="section-label">06 · Conclusion</div>
+  <h2>The Brands That<br><em>Win</em> Won't Be<br>the Loudest.</h2>
+  <p>They will be the most legible – to AI, to buyers, to partners, and to themselves. Legibility means knowing your ICP with surgical precision, publishing with structural authority, triggering outreach at exactly the right moment, and building every motion on owned data. It means treating AI as a coordination infrastructure – not a content vending machine.</p>
+
+  <ul class="manifesto-list">
+    <li>The era of volume is over. The era of precision has begun.</li>
+    <li>The click is gone. The citation is the new conversion.</li>
+    <li>Your pipeline is now a function of your AI‑recognizability.</li>
+    <li>Authenticity and first‑party data are your only durable moats.</li>
+    <li>Experience‑led GTM outperforms campaign‑led GTM at every deal size.</li>
+    <li>The best 90‑day plan is the one you actually execute – then iterate.</li>
+  </ul>
+</div>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════── -->
+<div class="doc-footer">
+  <div class="doc-footer-brand">clea.design</div>
+  <div class="doc-footer-meta">
+    The New GTM Playbook 2026 · Whitepaper<br>
+    March 2026 · All Rights Reserved
+  </div>
+</div>
+
+</body>
+</html>
